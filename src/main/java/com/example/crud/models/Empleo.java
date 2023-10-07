@@ -12,9 +12,9 @@ public class Empleo {
 	private int id;
 	@Column(name="telefono")
 	private int telefono;
-	@Column
+	@Column(name="puesto")
 	private String puesto;
-	@Column
+	@Column(name="actividades")
 	private String actividades;
 	
 	public int getId() {

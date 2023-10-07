@@ -1,5 +1,7 @@
 package com.example.crud.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,37 +12,43 @@ import com.example.crud.models.Empleo;
 public class EmpleoServiceImpl implements IEmpleoService {
 
 	@Autowired
-	private IEmpleoDao empleoDao;
+	private IEmpleoDao employmentDao;
 
 	@Override
-	public Empleo guardarEmpleo(Empleo e) {
+	public Empleo saveEmployment(Empleo employmentSave) {
 		// TODO Auto-generated method stub
-		return empleoDao.save(e);
+		return employmentDao.save(employmentSave);
 	}
 
 	@Override
-	public Empleo modificarEmpleo(int id, Empleo empleoNew) {
+	public Empleo updateEmployment(int id, Empleo empleoNew) {
 		// TODO Auto-generated method stub
-		Empleo empleoOld = buscarEmpleoPorId(id);
+		Empleo empleoOld = findEmploymentById(id);
 		empleoOld.setActividades(empleoNew.getActividades());
 		empleoOld.setPuesto(empleoNew.getPuesto());
 		empleoOld.setTelefono(empleoNew.getTelefono());
 
-		return empleoDao.save(empleoOld);
+		return employmentDao.save(empleoOld);
 	}
 
 	@Override
-	public String eliminarEmpleo(int id) {
+	public String deleteEmployment(int id) {
 		// TODO Auto-generated method stub
-		empleoDao.deleteById(id);
+		employmentDao.deleteById(id);
 		
 		return "Hecho";
 	}
 
 	@Override
-	public Empleo buscarEmpleoPorId(int id) {
+	public Empleo findEmploymentById(int id) {
 		// TODO Auto-generated method stub
-		return empleoDao.findById(id).orElse(null);
+		return employmentDao.findById(id).orElse(null);
+	}
+	
+	@Override
+	public List<Empleo> findEmployment() {
+		
+		return (List<Empleo>)employmentDao.findAll();
 	}
 
 }

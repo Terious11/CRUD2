@@ -18,8 +18,8 @@ public class CalculadoraController {
 	private ICalculadoraService calculadoraService;
 	
 	
-	@PostMapping("/save")
-	public String realizarCalculo(Calculadora c) {
-		return calculadoraService.realizarCalculoResultado(c);
+	@PostMapping("/calcular")
+	public String realizarCalculo(@RequestBody Calculadora calculadora) {
+		return calculadoraService.realizarCalculoResultado(calculadora);
 	}
 }

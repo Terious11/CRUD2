@@ -4,5 +4,5 @@ import com.example.crud.models.Calculadora;
 
 public interface ICalculadoraService {
 	
-	public String realizarCalculoResultado(Calculadora c);
+	public String realizarCalculoResultado(Calculadora calculadora);
 }

@@ -1,5 +1,8 @@
 package com.example.crud.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,27 +16,33 @@ import com.example.crud.models.Empleo;
 import com.example.crud.services.IEmpleoService;
 
 @RestController
-@RequestMapping("/empleo")
+@RequestMapping("/employment")
 public class EmpleoController {
 	
 	@Autowired
 	private IEmpleoService empleoService;
 	
-	@GetMapping("/{id}/buscarEmpleo")
-	public Empleo listarEmpleo(@PathVariable("id") int id) {
-		return empleoService.buscarEmpleoPorId(id);
+	@GetMapping("/{id}/findEmploymentById")
+	public Empleo findEmploymentById(@PathVariable("id") int id) {
+		return empleoService.findEmploymentById(id);
 	}
-	@PostMapping("/guardar")
-	public Empleo guardarEmpleo(@RequestBody Empleo e) {
-		return empleoService.guardarEmpleo(e);
+	@PostMapping("/saveEmployment")
+	public Empleo saveEmployment(@RequestBody Empleo employmentSave) {
+		return empleoService.saveEmployment(employmentSave);
 	}
-	@PutMapping("/{id}/actualizar")
-	public Empleo actualizaPersona(@PathVariable("id") int id,@RequestBody Empleo empleoNew ) {
-		return empleoService.modificarEmpleo(id,empleoNew);
+	@PutMapping("/{id}/updateEmployment")
+	public Empleo updateEmployment(@PathVariable("id") int id,@RequestBody Empleo empleoNew ) {
+		return empleoService.updateEmployment(id,empleoNew);
 	}
-	@PostMapping("/{id}/delete")
-	public String eleminarPersona(@PathVariable("id") int id) {
-		return empleoService.eliminarEmpleo(id);
+	@PostMapping("/{id}/deleteEmployment")
+	public String deleteEmployment(@PathVariable("id") int id) {
+		return empleoService.deleteEmployment(id);
 	}
+	@GetMapping("/findEmpleoyment")
+	public List<Empleo> findEmpleoyment() {
+		List<Empleo> empleoList = new ArrayList<>();
+		empleoList = empleoService.findEmployment();
+		return empleoList;
+		}
 
 }
